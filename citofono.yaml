@@ -1,1 +1,46 @@
+esphome:
+  name: citofono
+  friendly_name: Citofono
 
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+api:
+ota:
+  platform: esphome
+
+wifi:
+  ssid: "SKYWIFI_C8PBN"
+  password: "16XeMwRhUsYQ"
+  ap:
+    ssid: "Citofono Fallback"
+    password: "citofono123"
+
+captive_portal:
+
+switch:
+    - platform: gpio
+    pin: GPIO25
+    name: "Apri Portone"
+    id: apri_portone
+    on_turn_on:
+        - delay: 500ms
+        - switch.turn_off: apri_portone
+    - platform: gpio
+    pin: GPIO26
+    name: "Luce Scale"
+    id: luce_scale
+
+binary_sensor:
+    - platform: gpio
+    pin:
+      number: GPIO27
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "Campanello Suonato"
