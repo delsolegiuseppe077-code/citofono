@@ -42,5 +42,5 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-      inverted: true
+      inverted: true 
     name: "Campanello Suonato"
